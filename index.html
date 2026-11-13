@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROMO AGRO | Insumos, Precios y Métodos de Pago en Lima</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1b4332;
+            --primary-light: #2d6a4f;
+            --accent: #52b788;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Navegación */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(27, 67, 50, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 8%;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+            align-items: center;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        .btn-contacto {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .btn-contacto:hover {
+            background-color: #40916c;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 1rem;
+            margin-top: 70px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #e9ecef;
+        }
+
+        .btn-main {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, background 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-main:hover {
+            background-color: #40916c;
+            transform: translateY(-3px);
+        }
+
+        /* Secciones generales */
+        section {
+            padding: 5rem 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        /* Tarjetas de Productos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .product-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .product-info p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Tabla de Precios y Especificaciones */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-top: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f1f8f5;
+        }
+
+        /* Métodos de Pago Grid */
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .payment-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--accent);
+        }
+
+        .payment-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .payment-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .payment-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Nosotros & Ubicación */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .info-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .info-box i {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-top: 5px;
+        }
+
+        .map-placeholder {
+            height: 350px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 3rem 8%;
+        }
+
+        footer p {
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 {
+                font-size: 2.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegación -->
+    <header>
+        <a href="#" class="logo"><i class="fa-solid fa-seedling"></i> PROMO AGRO</a>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#precios">Precios</a></li>
+                <li><a href="#pagos">Pagos</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto" class="btn-contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Impulsamos el Agro Moderno en Lima</h1>
+            <p>Fertilizantes, semillas certificadas y sistemas de riego tecnificado con despacho directo a campo y facilidades de pago.</p>
+            <a href="#precios" class="btn-main">Ver Catálogo y Precios</a>
+        </div>
+    </section>
+
+    <!-- Productos Destacados -->
+    <section id="productos">
+        <div class="section-title">
+            <h2>Nuestra Especialidad</h2>
+            <p>Insumos agrícolas de alto rendimiento</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=600&q=80" alt="Fertilizantes" class="product-img">
+                <div class="product-info">
+                    <h3>Fertilizantes Especiales</h3>
+                    <p>Nutrientes granulares y foliares para máxima asimilación radicular en todo tipo de suelos.</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=600&q=80" alt="Semillas" class="product-img">
+                <div class="product-info">
+                    <h3>Semillas Certificadas</h3>
+                    <p>Variedades mejoradas con alta resistencia fitosanitaria y excelente vigor inicial.</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1628352081506-83c43123ed6d?auto=format&fit=crop&w=600&q=80" alt="Riego" class="product-img">
+                <div class="product-info">
+                    <h3>Sistemas de Riego</h3>
+                    <p>Cintas de goteo, tuberías y accesorios para una distribución uniforme del agua.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tabla de Precios y Especificaciones -->
+    <section id="precios" style="background-color: #ffffff;">
+        <div class="section-title">
+            <h2>Lista de Precios Referenciales</h2>
+            <p>Consulta nuestras presentaciones y precios orientativos para agricultores</p>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto / Insumo</th>
+                        <th>Categoría</th>
+                        <th>Presentación</th>
+                        <th>Precio Ref. (S/.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Nitrato de Amonio Plus</strong></td>
+                        <td>Fertilizante Nitrogenado</td>
+                        <td>Saco x 50 kg</td>
+                        <td>S/. 125.00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fosfato Diamónico (MAP)</strong></td>
+                        <td>Fertilizante Fosfatado</td>
+                        <td>Saco x 50 kg</td>
+                        <td>S/. 160.00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Semilla Certificada de Maíz Híbrido</strong></td>
+                        <td>Semillas</td>
+                        <td>Bolsa x 20 kg</td>
+                        <td>S/. 240.00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cinta de Goteo (16mm, 20cm)</strong></td>
+                        <td>Riego Tecnificado</td>
+                        <td>Rollo x 1,000 m</td>
+                        <td>S/. 280.00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bioestimulador Radicular Avanzado</strong></td>
+                        <td>Foliar / Orgánico</td>
+                        <td>Bidón x 5 Litros</td>
+                        <td>S/. 145.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Métodos de Pago -->
+    <section id="pagos">
+        <div class="section-title">
+            <h2>Métodos de Pago Aceptados</h2>
+            <p>Facilidades seguras y confiables para tus compras al contado o corporativas</p>
+        </div>
+        <div class="payment-grid">
+            <div class="payment-card">
+                <i class="fa-solid fa-building-columns"></i>
+                <h4>Transferencia Bancaria</h4>
+                <p>Cuentas corrientes en BCP, BBVA e Interbank para transferencias directas.</p>
+            </div>
+            <div class="payment-card">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+                <h4>Billeteras Digitales</h4>
+                <p>Aceptamos pagos rápidos y seguros mediante Yape y Plin directo al negocio.</p>
+            </div>
+            <div class="payment-card">
+                <i class="fa-solid fa-credit-card"></i>
+                <h4>Tarjetas de Crédito / Débito</h4>
+                <p>Visa, Mastercard, American Express (procesamiento seguro online o en tienda).</p>
+            </div>
+            <div class="payment-card">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+                <h4>Órdenes de Compra</h4>
+                <p>Crédito directo evaluado para asociaciones agrícolas e instituciones de Lima.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nosotros & Ubicación -->
+    <section id="nosotros" style="background-color: #ffffff;">
+        <div class="about-container">
+            <div class="about-text">
+                <h3>Ubicados en el corazón de Miraflores, Lima</h3>
+                <p><strong>PROMO AGRO</strong> opera desde Lima brindando soporte técnico y logística rápida hacia los valles de la costa y centros de acopio principales.</p>
+                
+                <div class="info-box">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <strong>Oficina Principal:</strong>
+                        <p>Miraflores, Lima - Perú</p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <i class="fa-solid fa-phone"></i>
+                    <div>
+                        <strong>Atención al Agricultor:</strong>
+                        <p>+51 900 000 000 / ventas@promoagro.pe</p>
+                    </div>
+                </div>
+            </div>
+            <div class="map-placeholder">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.6377727145584!2d-77.03100862521743!3d-12.119426042398485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c81f33fbe3f3%3A0xa64362a2656360b0!2sMiraflores%2C%20Lima%2C%20Per%C3%BA!5e0!3m2!1ses!2spe!4v1700000000000!5m2!1ses!2spe" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <h2 style="margin-bottom: 1rem; color: white;">PROMO AGRO</h2>
+        <p>Soluciones tecnológicas y nutrición vegetal avanzada para el agro peruano.</p>
+        <p style="margin-top: 2rem;">&copy; 2026 PROMO AGRO. Todos los derechos reservados. Miraflores, Lima - Perú.</p>
+    </footer>
+
+</body>
+</html>
